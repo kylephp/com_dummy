@@ -44,7 +44,7 @@
 
 	<property name="src" value="./" />
 
-	<target name="site" description="Copies files to a existing joomla site" depends="init, redCORE-submodule, prepare">
+	<target name="site" description="Copies files to a existing joomla site" depends="init, prepare">
 		<echo message="Copying administrator component..." />
 
 		<!-- Manifest & install script -->
