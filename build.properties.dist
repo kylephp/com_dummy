@@ -1,0 +1,11 @@
+# Properties files are configuration files used by PHING scripts containing:
+# key=value
+
+# Extension details:
+comp.name=dummy
+
+# Testing Joomla site localhost folder used by build.xml
+www.dir=
+
+# Folder to create the extension .zip build package used by component_packager.xml
+package.dir=
