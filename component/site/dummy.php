@@ -9,9 +9,6 @@
 
 defined('_JEXEC') or die;
 
-// Bootstraps redCORE
-RBootstrap::bootstrap();
-
 $app = JFactory::getApplication();
 $input = JFactory::getApplication()->input;
 
@@ -24,7 +21,7 @@ $view   = $input->getCmd('view');
 JLoader::registerPrefix('Dummy', __DIR__);
 
 // Register library prefix
-RLoader::registerPrefix('Dummy', JPATH_LIBRARIES . '/dummy');
+// JLoader::registerPrefix('Dummy', JPATH_LIBRARIES . '/com_dummy');
 
 // Loading helper
 JLoader::import('joomla.html.pagination');
@@ -36,8 +33,8 @@ $controller = $input->getCmd('view');
 // Set the controller page
 if (!file_exists(JPATH_COMPONENT . '/controllers/' . $controller . '.php'))
 {
-	$controller = 'categorydetail';
-	$input->set('view', 'categorydetail');
+	$controller = 'demo';
+	$input->set('view', 'demo');
 }
 
 require_once JPATH_COMPONENT . '/controllers/' . $controller . '.php';

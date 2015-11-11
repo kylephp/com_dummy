@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.0" method="upgrade">
 	<name>COM_DUMMY</name>
-	<creationDate>October 2014</creationDate>
-	<author>redCOMPONENT.com</author>
-	<authorEmail>email@redcomponent.com</authorEmail>
-	<authorUrl>www.redweb.dk</authorUrl>
-	<copyright>(c) Redweb.dk</copyright>
+	<creationDate>November 2015</creationDate>
+	<author>Kyle Hoang</author>
+	<authorEmail>kylephp.dev@redcomponent.com</authorEmail>
 	<license>GNU/GPL</license>
-	<version>2.0.35</version>
+	<version>1.0</version>
 	<description>COM_DUMMY_DESCRIPTION</description>
+
+    <files folder="component/site">
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+        <filename>router.php</filename>
+        <filename>dummy.php</filename>
+    </files>
+
+    <languages folder="component/site/language">
+        <language tag="en-GB">en-GB/en-GB.com_dummy.ini</language>
+        <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
+    </languages>
+
+    <administration>
+        <languages folder="component/admin/language">
+            <language tag="en-GB">en-GB/en-GB.com_dummy.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
+        </languages>
+    </administration>
 
 	<!-- Medias -->
 	<media destination="com_dummy" folder="media/com_dummy">

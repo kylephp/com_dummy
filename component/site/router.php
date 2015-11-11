@@ -59,39 +59,6 @@ function dummyBuildRoute(&$query)
 		return $segments;
 	}
 
-	if (isset($view) and ($view == 'categorydetail' || $view == 'itemdetail'))
-	{
-		if ($mId != intval($query['id']) || $mView != $view)
-		{
-			$segments[] = 'dummy';
-			$segments[] = $view;
-			$id = $query['id'];
-
-			if ($view == 'categorydetail')
-			{
-				$categorymodel = RModel::getAdminInstance('Category', array('ignore_request' => true), 'com_dummy');
-				$category = $categorymodel->getItem($id);
-				$segments[] = $id . ':' . $category->alias;
-
-				if (isset($query['templateId']) && !empty($query['templateId']))
-				{
-					$segments[] = $query['templateId'];
-				}
-			}
-			else
-			{
-				$itemmodel = RModel::getAdminInstance('Item', array('ignore_request' => true), 'com_dummy');
-				$item = $itemmodel->getItem($id);
-				$segments[] = $id . ':' . $item->alias;
-			}
-		}
-
-		unset($query['id']);
-		unset($query['view']);
-		unset($query['cid']);
-		unset($query['templateId']);
-	}
-
 	return $segments;
 }
 
@@ -116,11 +83,6 @@ function dummyParseRoute($segments)
 
 	$vars['view'] = $segments[1];
 	$vars['id']   = $segments[2];
-
-	if (isset($segments[3]))
-	{
-		$vars['templateId'] = $segments[3];
-	}
-
+	
 	return $vars;
 }

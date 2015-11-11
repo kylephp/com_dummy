@@ -13,15 +13,11 @@ Desktop.ini
 
 # Sublime Text
 *.sublime*
-sftp-config.json
 
 # Eclipse
 .buildpath
 .project
 .settings
-
-# Netbeans (custom)
-.netbeans/*
 
 # Temp files
 *.tmp
@@ -29,40 +25,50 @@ sftp-config.json
 *.swp
 *~.nib
 *~
-*.bak.php
 
 # Phing
 build.properties
 phing-latest.phar
 .dist
 
+# Github pages and Jekyll files
+/_site/
+/Gemfile
+/Gemfile.lock
+
+# phpunit
+tests/unit/phpunit.xml
+
 # composer
+composer.phar
 vendor/*
-libraries/dummy/vendor/*
-!libraries/dummy/vendor/index.html
+
+# Robo
+robo.phar
+
+# LESS Transpiler
+npm-debug.log
+
+# Build config
+gulp-config.json
+node_modules
+releases
 
 # Test related files
-tests/system/servers/configdef.php
-tests/system/webdriver/tests/logs/
 tests/acceptance.suite.yml
+tests/functional.suite.yml
+tests/unit.suite.yml
 tests/api.suite.yml
-codecept.phar
 tests/*/*Tester.php
-tests/testingsite/
-tests/vendor/*
-selenium.log
+tests/joomla-cms3*
 tests/_output
-tests/joomla-cms3
-tests/base
 selenium-server-standalone.jar
+codecept.phar
+selenium.log
+selenium-errors.log
 tests/_support/_generated/*
 
 # Never ignore
 !.gitignore
 !index.html
 !index.php
-
-# Build config
-gulp-config.json
-node_modules
-releases
