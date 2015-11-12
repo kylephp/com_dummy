@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 JHTML::_('behavior.formvalidation');
 JHtml::_('rjquery.chosen', 'select');
 JHtml::_('behavior.modal', 'a.modal-thumb');
+RHelperAsset::load('dummy.min.css', 'com_dummy');
 ?>
 
 <script type="text/javascript">

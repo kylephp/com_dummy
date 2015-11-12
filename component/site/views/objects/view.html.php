@@ -125,23 +125,12 @@ class DummyViewObjects extends DummyView
 		$secondGroup = new RToolbarButtonGroup;
 		$thirdGroup = new RToolbarButtonGroup;
 
-		if ($user->authorise('core.create', 'com_dummy'))
-		{
-			$new = RToolbarBuilder::createNewButton('object.add');
-			$firstGroup->addButton($new);
-		}
-
-		if ($user->authorise('core.edit', 'com_dummy'))
-		{
-			$edit = RToolbarBuilder::createEditButton('object.edit');
-			$secondGroup->addButton($edit);
-		}
-
-		if ($user->authorise('core.delete', 'com_dummy'))
-		{
-			$delete = RToolbarBuilder::createDeleteButton('objects.delete');
-			$secondGroup->addButton($delete);
-		}
+		$new = RToolbarBuilder::createNewButton('object.add');
+		$firstGroup->addButton($new);
+		$edit = RToolbarBuilder::createEditButton('object.edit');
+		$secondGroup->addButton($edit);
+		$delete = RToolbarBuilder::createDeleteButton('objects.delete');
+		$secondGroup->addButton($delete);
 
 		$toolbar = new RToolbar;
 		$toolbar->addGroup($firstGroup)->addGroup($secondGroup)->addGroup($thirdGroup);
