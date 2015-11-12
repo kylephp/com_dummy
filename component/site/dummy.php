@@ -21,7 +21,7 @@ $view   = $input->getCmd('view');
 JLoader::registerPrefix('Dummy', __DIR__);
 
 // Register library prefix
-// JLoader::registerPrefix('Dummy', JPATH_LIBRARIES . '/com_dummy');
+JLoader::registerPrefix('Dummy', JPATH_LIBRARIES . '/com_dummy');
 
 // Loading helper
 JLoader::import('joomla.html.pagination');

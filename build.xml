@@ -41,7 +41,7 @@
 		<!-- Clean old files -->
 		<delete dir="${www.dir}/administrator/com_${comp.name}" quiet="yes" includeemptydirs="true"/>
         <delete dir="${www.dir}/administrator/components/com_${comp.name}" quiet="yes" includeemptydirs="true"/>
-        <delete dir="${www.dir}/libraries/${comp.name}" quiet="yes" includeemptydirs="true"/>
+        <delete dir="${www.dir}/libraries/com_${comp.name}" quiet="yes" includeemptydirs="true"/>
 	</target>
 
 	<property name="src" value="./" />
@@ -89,12 +89,12 @@
 		</copy>
 
 		<!-- Libraries -->
-		<!-- <echo message="Copying libraries..." />
+		<echo message="Copying libraries..." />
 		<copy todir="${www.dir}/libraries" overwrite="true">
 			<fileset dir="${src}/libraries">
 				<include name="**" />
 			</fileset>
-		</copy> -->
+		</copy>
 
 		<!-- Media -->
 		<echo message="Copying media folder..." />
