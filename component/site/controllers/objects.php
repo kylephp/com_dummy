@@ -19,4 +19,32 @@ defined('_JEXEC') or die;
  */
 class DummyControllerObjects extends RControllerAdmin
 {
+	/**
+	 * Method to get object list
+	 * @return void
+	 */
+	public function ajaxGetObjectList()
+	{
+		$app = JFactory::getApplication();
+		$model = $this->getModel('objects');
+		$model->setState('filter.published', 1);
+		$objects = $model->getItems();
+		$data = array();
+
+		foreach ($objects as $object) 
+		{
+			$o = new stdClass;
+			$o->id = $object->id;
+			$o->name = $object->name;
+			$params = new JRegistry($object->params);
+			$o->lat = $params->get('lat');
+			$o->lng = $params->get('lon');
+
+			$data[] = $o;
+		}
+
+		echo json_encode($data);
+
+		$app->close();
+	}
 }
