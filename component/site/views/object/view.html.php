@@ -77,10 +77,13 @@ class DummyViewObject extends DummyView
 		$save = RToolbarBuilder::createSaveButton('object.apply');
 		$saveAndClose = RToolbarBuilder::createSaveAndCloseButton('object.save');
 		$saveAndNew = RToolbarBuilder::createSaveAndNewButton('object.save2new');
+		$save2Copy = RToolbarBuilder::createSaveAsCopyButton('object.save2copy');
+
 
 		$group->addButton($save)
 			->addButton($saveAndClose)
-			->addButton($saveAndNew);
+			->addButton($saveAndNew)
+			->addButton($save2Copy);
 
 		if (empty($this->item->id))
 		{

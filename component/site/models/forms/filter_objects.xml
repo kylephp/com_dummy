@@ -9,14 +9,4 @@
 			class="js-enter-submits"
 			/>
 	</fields>
-	<fields name="list">
-		<field
-			name="objects_limit"
-			type="rlimitbox"
-			class="inputbox input-mini chzn"
-			default="25"
-			label="JGLOBAL_ORDERING_LIST_LIMIT"
-			description="JGLOBAL_ORDERING_LIST_LIMIT_DESC"
-			onchange="this.form.submit();" />
-	</fields>
 </form>
