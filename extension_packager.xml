@@ -49,7 +49,7 @@
 		<mkdir dir="${tmpdir}"/>
 	</target>
 
-	<target name="build" depends="prepare">
+	<target name="build" depends="prepare, copyredcore">
 
 		<echo msg="Copying INSTALLER files to build directory..."/>
 		<copy todir="${tmpdir}/${extension}">
@@ -97,6 +97,15 @@
 			</fileset>
 		</copy>
 	</target>
+
+	<target name="copyredcore">
+        <phing phingfile="${project.basedir}/redCORE/redcore_copy_mandatory.xml"
+               target="copyframework"
+               haltonfailure="true">
+            <property name="redcoretargetdir" value="${tmpdir}/${extension}/redCORE" />
+            <property name="redcorepath" value="${project.basedir}/redCORE" />
+        </phing>
+    </target>
 
 	<target name="compress">
 		<echo msg="Creating ZIP archive..."/>

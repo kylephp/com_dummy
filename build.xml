@@ -7,6 +7,7 @@
 <!-- Joomla Installer => install from folder => choose this repo as folder -->
 <!-- ==================================================================    -->
 <project name="dummy" default="site" basedir=".">
+	<import file="./redCORE/build.xml"/>
 
 	<!-- Do initialization stuff -->
 	<target name="init" >
@@ -45,7 +46,7 @@
 
 	<property name="src" value="./" />
 
-	<target name="site" description="Copies files to a existing joomla site" depends="init, prepare">
+	<target name="site" description="Copies files to a existing joomla site" depends="init, redCORE-submodule, prepare">
 		<echo message="Copying administrator component..." />
 
 		<!-- Manifest & install script -->

@@ -7,7 +7,25 @@
 	<license>GNU/GPL</license>
 	<version>1.0</version>
 	<description>COM_DUMMY_DESCRIPTION</description>
+    <scriptfile>install.php</scriptfile>
+    <redcore version="1.6.13" defaultFramework="bootstrap3" />
 
+    <install folder="component/admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/install.sql</file>
+            <file driver="mysql" charset="utf8">sql/install/mysql/data.sql</file>
+        </sql>
+    </install>
+    <uninstall folder="component/admin">
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+    <update folder="component/admin">
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
     <files folder="component/site">
         <folder>controllers</folder>
         <folder>models</folder>
@@ -21,19 +39,33 @@
         <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
     </languages>
 
-    <administration>
-        <languages folder="component/admin/language">
-            <language tag="en-GB">en-GB/en-GB.com_dummy.ini</language>
-            <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
-        </languages>
-    </administration>
-
 	<!-- Medias -->
 	<media destination="com_dummy" folder="media/com_dummy">
         <folder>css</folder>
         <folder>images</folder>
         <folder>js</folder>
     </media>
+
+    <administration>
+        <files folder="component/admin">
+            <folder>controllers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>dummy.php</filename>
+        </files>
+        <languages folder="component/admin/language">
+            <language tag="en-GB">en-GB/en-GB.com_dummy.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
+            <language tag="da-DK">da-DK/da-DK.com_dummy.ini</language>
+            <language tag="da-DK">da-DK/da-DK.com_dummy.sys.ini</language>
+        </languages>
+    </administration>
 
 	<!-- Libraries to install with the component -->
 	<libraries>
