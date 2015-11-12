@@ -63,11 +63,15 @@
 		<field
 			name="lat"
 			label="COM_DUMMY_OBJECT_LAT"
-			type="text" />
+			type="text" 
+			required="true"
+			/>
 		<field
 			name="lon"
 			label="COM_DUMMY_OBJECT_LON"
-			type="text" />
+			type="text" 
+			required="true"
+			/>
 		<field
 			name="meta_description"
 			label="COM_DUMMY_OBJECT_META_DESCRIPTION"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="library" method="upgrade" version="2.5">
 	<name>dummy - Libraries</name>
-	<libraryname>dummy</libraryname>
+	<libraryname>com_dummy</libraryname>
 	<creationDate>May 2014</creationDate>
 	<author>Kyle Hoang</author>
 	<authorEmail>kylephp.dev@gmail.com</authorEmail>

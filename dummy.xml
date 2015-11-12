@@ -30,6 +30,7 @@
         <folder>controllers</folder>
         <folder>models</folder>
         <folder>views</folder>
+        <filename>controller.php</filename>
         <filename>router.php</filename>
         <filename>dummy.php</filename>
     </files>
@@ -62,13 +63,11 @@
         <languages folder="component/admin/language">
             <language tag="en-GB">en-GB/en-GB.com_dummy.ini</language>
             <language tag="en-GB">en-GB/en-GB.com_dummy.sys.ini</language>
-            <language tag="da-DK">da-DK/da-DK.com_dummy.ini</language>
-            <language tag="da-DK">da-DK/da-DK.com_dummy.sys.ini</language>
         </languages>
     </administration>
 
 	<!-- Libraries to install with the component -->
 	<libraries>
-		<library name="dummy"/>
+		<library name="com_dummy"/>
 	</libraries>
 </extension>

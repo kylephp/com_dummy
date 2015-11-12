@@ -1,0 +1,5 @@
+.form-horizontal .control-label {
+	width: auto !important;
+    padding-right: 5px !important;
+    text-align: left !important;
+}

@@ -27,6 +27,8 @@ JLoader::registerPrefix('Dummy', JPATH_LIBRARIES . '/com_dummy');
 JLoader::import('joomla.html.pagination');
 JLoader::import('dummy', JPATH_COMPONENT . '/helpers');
 JLoader::import('route', JPATH_COMPONENT . '/helpers');
+// Load RedCORE bootstrap CSS
+RHelperAsset::load('dummy.min.css', 'com_dummy');
 
 $controller = $input->getCmd('view');
 
