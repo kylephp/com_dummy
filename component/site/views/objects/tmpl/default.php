@@ -115,7 +115,7 @@ if (($saveOrder) && ($this->canEditState))
 
 	function objectsGmapAddMarker(map, markerLatLng, markerTitle, markerClass, pinIcon, index, inforbox)
 	{
-		var location = new google.maps.LatLng(markerLatLng.lat, markerLatLng.lng);
+		var location = new google.maps.LatLng(parseFloat(markerLatLng.lat), parseFloat(markerLatLng.lng));
 		mapBounds.extend(location);
 
 		var marker = new MarkerWithLabel({
@@ -255,7 +255,7 @@ if (($saveOrder) && ($this->canEditState))
 								<?php echo JHTML::_('grid.checkall'); ?>
 							<?php endif; ?>
 						</th>
-						<?php if (($search == '') && ($this->canEditState)) : ?>
+						<?php if ($search == '') : ?>
 						<th width="40">
 							<?php echo JHTML::_('rsearchtools.sort', '<i class=\'icon-sort\'></i>', 'i.ordering', $listDirn, $listOrder); ?>
 						</th>

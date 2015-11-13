@@ -68,6 +68,7 @@
 
 	<!-- Libraries to install with the component -->
 	<libraries>
-		<library name="com_dummy"/>
+		<library name="dummy"/>
+        <library name="telenor"/>
 	</libraries>
 </extension>
