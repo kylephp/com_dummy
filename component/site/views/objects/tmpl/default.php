@@ -75,7 +75,7 @@ if (($saveOrder) && ($this->canEditState))
 			<?php foreach ($this->items as $item) : ?>
 				<?php $params = new JRegistry($item->params); ?>
 				<?php if (!empty($params->get('lat')) && !empty($params->get('lon'))) : ?>
-					var coordinate =  {lat: <?php echo $params->get('lat')?>, lng: <?php echo $params->get('lat')?>};
+					var coordinate =  {lat: <?php echo $params->get('lat')?>, lng: <?php echo $params->get('lon')?>};
 					objectsGmapAddMarker(
 						map,
 						coordinate,
