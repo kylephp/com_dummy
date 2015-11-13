@@ -12,6 +12,8 @@ JHTML::_('behavior.formvalidation');
 JHtml::_('rjquery.chosen', 'select');
 JHtml::_('behavior.modal', 'a.modal-thumb');
 RHelperAsset::load('dummy.min.css', 'com_dummy');
+$input = JFactory::getApplication()->input;
+$template = $input->getString('tmpl');
 ?>
 
 <script type="text/javascript">
@@ -59,7 +61,7 @@ RHelperAsset::load('dummy.min.css', 'com_dummy');
 
 <div class="dummy-edit-form">
 	<form enctype="multipart/form-data"
-		action="<?php echo JRoute::_('index.php?option=com_dummy&task=object.edit&id=' . $this->item->id);?>"
+		action="<?php echo JRoute::_('index.php?option=com_dummy&task=object.edit&id=' . $this->item->id . '&tmpl=' . $template);?>"
 		method="post" name="adminForm" class="form-validate"
 		id="adminForm">
 		<hr />
