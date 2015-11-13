@@ -38,7 +38,8 @@ if (($saveOrder) && ($this->canEditState))
 {
 	JHTML::_('rsortablelist.sortable', 'table-items', 'adminForm', strtolower($listDirn), $saveOrderLink, false, true);
 }
-
+$input = JFactory::getApplication()->input;
+$template = $input->getString('tmpl');
 ?>
 <script type="text/javascript">
 	var map = null;
@@ -217,7 +218,7 @@ if (($saveOrder) && ($this->canEditState))
 		<div id="objectsGmapCanvas" style="width: 100%; height: 500px;"></div>
 	</div>
 	<div class="col-sm-8">
-		<form action="index.php?option=com_dummy&view=objects" class="admin" id="adminForm" method="post" name="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_dummy&view=objects')?>" class="admin" id="adminForm" method="post" name="adminForm">
 			<?php
 			echo RLayoutHelper::render(
 				'searchtools.default',
@@ -288,7 +289,7 @@ if (($saveOrder) && ($this->canEditState))
 							<?php if (($item->checked_out) || (!$this->canEdit)) : ?>
 								<?php echo $itemTitle; ?>
 							<?php else : ?>
-								<?php echo JHtml::_('link', 'index.php?option=com_dummy&task=object.edit&id=' . $item->id, $itemTitle); ?>
+								<?php echo JHtml::_('link', 'index.php?option=com_dummy&task=object.edit&id=' . $item->id . '&tmpl=' . $template, $itemTitle); ?>
 							<?php endif; ?>
 						</td>
 						<td>

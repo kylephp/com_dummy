@@ -21,7 +21,7 @@
  * @param int ErrNo
  * @param string Error
  */
-class DummyCurlHelper {
+class DummyHelperCurl {
 
     private $http200Aliases = array();
     private $httpHeaders = array();
@@ -1637,7 +1637,7 @@ class DummyCurlHelper {
      * @return CURL The initiated CURL object
      */
     public static function init($url = null) {
-        return new CURL($url);
+        return new DummyHelperCurl($url);
     }
 
 }

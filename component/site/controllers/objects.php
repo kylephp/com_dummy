@@ -28,6 +28,7 @@ class DummyControllerObjects extends RControllerAdmin
 		$app = JFactory::getApplication();
 		$model = $this->getModel('objects');
 		$model->setState('filter.published', 1);
+		$model->setState('list.limit', 0);
 		$objects = $model->getItems();
 		$data = array();
 

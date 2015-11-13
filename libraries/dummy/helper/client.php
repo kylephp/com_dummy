@@ -6,7 +6,7 @@
  */
 
 
-class DummyClientHelper
+class DummyHelperClient
 {
     const JSON_RPC_API = 'http://all6.demo.php/pegasus-mobile-sales-service/server.php';
 
@@ -21,6 +21,14 @@ class DummyClientHelper
 
     private $accountSession;
 
+
+    private $error;
+
+    public function error()
+    {
+        return $this->error;
+    }
+
     public function __construct($email, $pass)
     {
         $this->email = $email;
@@ -30,7 +38,7 @@ class DummyClientHelper
 
     public function makeRequest($data)
     {
-        $curl = \CURL::init(self::JSON_RPC_API)
+        $curl = \DummyHelperCurl::init(self::JSON_RPC_API)
             ->addHttpHeader('Content-type', 'application/json')
             ->setPost(TRUE)
             ->setTimeOut(30)
@@ -97,8 +105,8 @@ JSON;
 }
 JSON;
 
-        $response =  $this->makeRequest($data);
-        if( is_array($response)  && isset( $response['result'])){
+        $response = $this->makeRequest($data);
+        if (is_array($response) && isset($response['result'])) {
             return $response['result'];
         }
         return $response;
@@ -108,7 +116,7 @@ JSON;
     /**
      *
      */
-    public function getPolicies( $limit = 5)
+    public function getPolicies($limit = 5)
     {
 
         $sessionToken = $this->accountSession['SessionToken'];
@@ -134,6 +142,9 @@ JSON;
 JSON;
 
         $response = $this->makeRequest($data);
+        if( is_array( $response) && isset( $response['result'] ) ){
+            return $response['result'];
+        }
         return $response;
     }
 
@@ -143,9 +154,8 @@ JSON;
      * @param array $params
      * @return bool
      */
-    public function createClaim($policyId, $params )
+    public function createClaim($policyId, $params)
     {
-
         $sessionToken = $this->accountSession['SessionToken'];
         $policy = $this->getPolicy($policyId);
 
@@ -169,12 +179,12 @@ JSON;
                 "Status": 0,
                 "CreateDate": "2015-10-30",
                 "UpdateDate": null,
-                "DateOfLoss": "2015-11-20",
-                "TimeOfLoss": "30:00:0000",
-                "Place": "Somewhere",
-                "PolicyOfficeInChargeOfLoss": "Test tui",
-                "CauseOfLoss": "Randomly",
-                "SituationOfLoss": "Unknownnn",
+                "DateOfLoss": "{$params['DateOfLoss']}",
+                "TimeOfLoss": "{$params['TimeOfLoss']}",
+                "Place": "{$params['PlaceOfLoss']}",
+                "PolicyOfficeInChargeOfLoss": "{$params['InChargeOfLoss']}",
+                "CauseOfLoss": "{$params['CauseOfLoss']}",
+                "SituationOfLoss": "{$params['SituationOfLoss']}",
                 "UploadedFiles": null,
                 "Policy": null,
                 "ProductName": null,
@@ -193,17 +203,19 @@ JSON;
 }
 JSON;
 
-
             $response = $this->makeRequest($data);
-            if( is_array( $response) && iset( $response['result']['Claim'])){
+
+            if (is_array($response) && isset($response['result']['Claim'])) {
                 return $response['result']['Claim'];
+            }
+
+            if( isset( $response['error'] )){
+                $this->error = $response['error'];
             }
 
             return false;
         }
 
-        throw new \Exception('Couldnt get policy by id: '.$policyId);
+        throw new \Exception('Couldnt get policy by id: ' . $policyId);
     }
-
-
 }
