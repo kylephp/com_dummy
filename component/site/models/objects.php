@@ -162,7 +162,7 @@ class DummyModelObjects extends RModelList
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = 'i.ordering', $direction = 'ASC')
+	protected function populateState($ordering = 'i.name', $direction = 'ASC')
 	{
 		$app = JFactory::getApplication();
 
