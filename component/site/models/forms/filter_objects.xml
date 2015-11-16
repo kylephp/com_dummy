@@ -9,4 +9,6 @@
 			class="js-enter-submits"
 			/>
 	</fields>
+	<fields name="list">
+	</fields>
 </form>

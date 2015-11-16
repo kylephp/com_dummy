@@ -76,6 +76,13 @@ class DummyModelObjects extends RModelList
 		$user	= JFactory::getUser();
 		$groups	= $user->getAuthorisedViewLevels();
 		$app    = JFactory::getApplication();
+		$value = $app->getUserStateFromRequest('global.list.limit', $this->paginationPrefix . 'limit', $app->getCfg('list_limit'), 'uint');
+		$limit = $value;
+		$this->setState('list.limit', $limit);
+
+		$value = $app->getUserStateFromRequest($this->context . '.limitstart', $this->paginationPrefix . 'limitstart', 0);
+		$limitstart = ($limit != 0 ? (floor($value / $limit) * $limit) : 0);
+		$this->setState('list.start', $limitstart);
 
 		$query = $db->getQuery(true);
 		$query->select(

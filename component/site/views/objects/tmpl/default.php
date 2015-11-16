@@ -218,7 +218,7 @@ $template = $input->getString('tmpl');
 		<div id="objectsGmapCanvas" style="width: 100%; height: 500px;"></div>
 	</div>
 	<div class="col-sm-8">
-		<form action="<?php echo JRoute::_('index.php?option=com_dummy&view=objects')?>" class="admin" id="adminForm" method="post" name="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_dummy&view=objects&tmpl=' . $template)?>" class="admin" id="adminForm" method="post" name="adminForm">
 			<?php
 			echo RLayoutHelper::render(
 				'searchtools.default',
@@ -299,7 +299,8 @@ $template = $input->getString('tmpl');
 				<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php echo $this->pagination->getPaginationLinks(null, array('showLimitBox' => true)); ?>
+			<?php echo $this->pagination->getLimitBox(); ?>
+			<?php echo $this->pagination->getListFooter(); ?>
 			<?php endif; ?>
 
 			<input type="hidden" name="task" value=""/>
