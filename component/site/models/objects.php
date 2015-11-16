@@ -58,6 +58,8 @@ class DummyModelObjects extends RModelList
 				'access', 'i.access', 'access_level',
 				'i.id'
 			);
+
+			$config['filter_fields'] = $filterFields;
 		}
 
 		parent::__construct($config);
