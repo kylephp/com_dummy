@@ -215,7 +215,7 @@ $template = $input->getString('tmpl');
 
 <div class="row">
 	<div class="col-sm-4">
-		<div id="objectsGmapCanvas" style="width: 100%; height: 500px;"></div>
+		<div id="objectsGmapCanvas" style="width: 100%; height: 350px;"></div>
 	</div>
 	<div class="col-sm-8">
 		<form action="<?php echo JRoute::_('index.php?option=com_dummy&view=objects&tmpl=' . $template)?>" class="admin" id="adminForm" method="post" name="adminForm">
@@ -256,11 +256,6 @@ $template = $input->getString('tmpl');
 								<?php echo JHTML::_('grid.checkall'); ?>
 							<?php endif; ?>
 						</th>
-						<?php if ($search == '') : ?>
-						<th width="40">
-							<?php echo JHTML::_('rsearchtools.sort', '<i class=\'icon-sort\'></i>', 'i.ordering', $listDirn, $listOrder); ?>
-						</th>
-						<?php endif; ?>
 						<th class="title" width="auto">
 							<?php echo JHTML::_('rsearchtools.sort', 'COM_DUMMY_OBJECT_NAME', 'i.name', $listDirn, $listOrder); ?>
 						</th>
@@ -276,14 +271,6 @@ $template = $input->getString('tmpl');
 					<tr>
 						<td><?php echo $this->pagination->getRowOffset($i); ?></td>
 						<td><?php echo JHtml::_('grid.id', $i, $item->id); ?></td>
-						<?php if (($search == '') && ($this->canEditState)) : ?>
-						<td class="order nowrap center">
-							<span class="sortable-handler hasTooltip <?php echo ($saveOrder) ? '' : 'inactive'; ?>">
-								<i class="icon-move"></i>
-							</span>
-							<input type="text" style="display:none" name="order[]" value="<?php echo $orderkey + 1;?>" class="text-area-order" />
-						</td>
-						<?php endif; ?>
 						<td>
 							<?php $itemTitle = JHTML::_('string.truncate', $item->name, 50, true, false); ?>
 							<?php if (($item->checked_out) || (!$this->canEdit)) : ?>
