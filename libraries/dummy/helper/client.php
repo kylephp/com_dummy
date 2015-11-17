@@ -8,7 +8,8 @@
 
 class DummyHelperClient
 {
-    const JSON_RPC_API = 'http://all6.demo.php/pegasus-mobile-sales-service/server.php';
+
+    private $api;
 
     private $email;
 
@@ -29,8 +30,9 @@ class DummyHelperClient
         return $this->error;
     }
 
-    public function __construct($email, $pass)
+    public function __construct($api, $email, $pass)
     {
+        $this->api = $api;
         $this->email = $email;
         $this->pass = $pass;
     }
@@ -38,7 +40,7 @@ class DummyHelperClient
 
     public function makeRequest($data)
     {
-        $curl = \DummyHelperCurl::init(self::JSON_RPC_API)
+        $curl = \DummyHelperCurl::init($this->api)
             ->addHttpHeader('Content-type', 'application/json')
             ->setPost(TRUE)
             ->setTimeOut(30)

@@ -20,9 +20,6 @@ defined('_JEXEC') or die;
 class DummyControllerClaim extends RControllerAdmin
 {
 
-    private $user = 'testken4@contemi.com';
-    private $pass = 'Palomino1';
-
     /**
      * Method to get object list
      * @return void
@@ -156,7 +153,13 @@ class DummyControllerClaim extends RControllerAdmin
      */
     private function getAPIClient($login = true)
     {
-        $client = new \DummyHelperClient($this->user, $this->pass);
+
+        $params = JComponentHelper::getParams('com_dummy');
+        $api = $params->get('JSON_RPC_API');
+        $user = $params->get('JSON_RPC_API_USER');
+        $pass = $params->get('JSON_RPC_API_PASS');
+
+        $client = new \DummyHelperClient( $api, $user, $pass);
         if (true === $login) {
             $client->login();
         }
