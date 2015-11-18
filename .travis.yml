@@ -11,4 +11,5 @@ script:
 - php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/
 - php .travis/phppec.php component/ libraries/dummy/ modules/ plugins/
 notifications:
-  slack: r0E7kYW6WZtgxPnZVlKa8k6A
+  slack: 
+    rooms: r0E7kYW6WZtgxPnZVlKa8k6A
