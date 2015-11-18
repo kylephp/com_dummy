@@ -10,7 +10,7 @@ php:
 
 script:
 - php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/ # Missed debug code checker
-- php .travis/phppec.php component/ libraries/reditem/ modules/ plugins/ #parse error checker
+- php .travis/phppec.php component/ libraries/dummy/ modules/ plugins/ #parse error checker
 
 notifications:
   slack: kyle-lab:r0E7kYW6WZtgxPnZVlKa8k6A
