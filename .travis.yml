@@ -11,5 +11,5 @@ script:
 - php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/
 - php .travis/phppec.php component/ libraries/dummy/ modules/ plugins/
 notifications:
-  slack: 
-    rooms: r0E7kYW6WZtgxPnZVlKa8k6A
+  slack:
+    secure: XN7FXqWuD0Hwmv0mgp5Tydb+CKoSGlJRK9tXmjfVY4URo4vSX5F6cxTksN4FDkaX/QUK5UEapn4o20OJRaPPhzAPPafVjsJ/V/uAFkn+EUA4GWgYFIaQ+c21nug4Wp2rdUC+tycaIGmMiyu3x+/b10q1DAVEXbG6i6d75g30yxk9Ldoj7gZFdZ2xT5rrviDtn5n4oYTx0ZRRQVo6vqG2eco8wJ5cAIT6/J9l4Jp0vDRvI7DWYsS3+lCaFQyDwweXF5Qxuq0GG35OJlJgaxTPkC2rKodY6fvw0/GcchDldsFS+KCEeIexSseIGYgsDezdr/8eqpMfJJME6vchCaRh8KClHjFBRJ4o8wkzFAlGXCrGQ5xRRq3TPiqbKQHSc8uKPQAqGzBY1RZXzbYVNPDNYffQWAlE1Drml6woWV9SiXH+QG9iyhrtriHShVkYtEz96aeQsybeFIUcSwpNCGzzp34/CaL0RpHJlEx25qNNiAdydLD30gR+PCzucVlv8GmdJwXjXgpL0L8epLXn3Iyobz8JxzOSEgSR47Be3KTFQ9gNvd3TWvoOG7gfvDwNCFSDtQf/WEHOgRmZlcCmJd2k+uGQ56fJFFOalHwHjNVG8kn0bwHL2oMD6O6xfBt6uNJgR3RH+uHDRSDGmyuA6PlcBIiUEBhFjE7JDMyAXt7rAiQ=
