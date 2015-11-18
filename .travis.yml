@@ -1,16 +1,15 @@
 language: php
 env:
   global:
-    - CLOUD_NAME=kylephp
-    - GITHUB_TOKEN=89c98a94a2b870cfc4fb1659163bb26bb3159ece
-    - ORGANIZATION=KYLE-LAB
-    - REPO=com_dummy
+  - CLOUD_NAME=kylephp
+  - GITHUB_TOKEN=89c98a94a2b870cfc4fb1659163bb26bb3159ece
+  - ORGANIZATION=KYLE-LAB
+  - REPO=com_dummy
 php:
 - 5.5
-
 script:
-- php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/ # Missed debug code checker
-- php .travis/phppec.php component/ libraries/dummy/ modules/ plugins/ #parse error checker
-
+- php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/
+- php .travis/phppec.php component/ libraries/dummy/ modules/ plugins/
 notifications:
-  slack: kyle-lab:r0E7kYW6WZtgxPnZVlKa8k6A
+  slack:
+      secure: Vodea1HlKBZoJikt2+GZ4QpZ/uXoTSJ9symxD5YplEQrgFNLxAHA3BxUn8vFXLbnV5RKfTFFzCSNp8nO6oNDcIZGBuePhwNOvznT6iS7+dwOQaoC3jDM0hhcnJQi54Zi9w2nUFd1Q14SpsNZfnwB74D3wixWwyayAk8ft76JQ7Lo/svIy/MGNF3eQnTo/DcpTpjXUfxq4dW8i3/HrqH/+SJIJG2/OaPECGxlbzJi65KroibhvWTuXks17sUsInSk+Gy2k7mw/ZmWGIeeBTjs4O5Ij5dhV0ALJQxpkqpib0GAIp9jg3/ppUHHRiO2YJTwR4YLfWvhblSq+EYf/G9yrtglJlgXxu+7g1r/OZ+BWgRTT3VzyQV+RVM77Wb6oUqztgIqS+nWc+JuuMJzqBIQ3yHVzeMqmxaPvtdO9Y/xwDVWnR9x+hu84bJ6r/qe1D+8/shhk0cStSEZvmmX1cbfLm+7NmEVK32HH6Lb5b9ewLdVJlcjS40HWUsdGPdeAApjE0Hoi+4vkMwfJwg7qsSbSpi/2cR1yVBuzJJUU2zG7lFh26NmLvZ7ng8OPB6HYDJlbqgrznmwSIK0rawhCyekScgLe6uupMrHdOdY0ZxbUINiDOt9+Y6WWsKvKFfLUfwlAI/Gp6C70UymfsMaDJNyVgZdJJyPLoHGaohHsp4H9N4=
