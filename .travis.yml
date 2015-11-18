@@ -8,35 +8,6 @@ env:
 php:
 - 5.5
 
-before_script:
-- sudo apt-get update -qq
-- sudo apt-get install -y --force-yes apache2 libapache2-mod-fastcgi php5-curl php5-mysql php5-intl php5-gd > /dev/null
-- sudo mkdir $(pwd)/.run
-- sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,listen = 127.0.0.1:9000,listen = /tmp/php5-fpm.sock,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,;listen.owner = nobody,listen.owner = $USER,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,;listen.group = nobody,listen.group = $USER,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,;listen.mode = 0660,listen.mode = 0666,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,user = nobody,;user = $USER,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo sed -e "s,group = nobody,;group = $USER,g" --in-place ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- cat ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-- sudo a2enmod rewrite actions fastcgi alias
-- echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-- ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
-- sudo cp -f tests/travis-ci-apache.conf /etc/apache2/sites-available/default
-- sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
-- git submodule update --init --recursive
-- sudo service apache2 restart
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
-- sleep 3 # give xvfb some time to start
-- sudo apt-get install fluxbox -y --force-yes
-- fluxbox &
-- sleep 3 # give fluxbox some time to start
-# Following line uses a bot account to authenticate in github and make composer stable and faster, see https://redweb.atlassian.net/wiki/pages/viewpage.action?pageId=46694753
-- composer config -g github-oauth.github.com $GITHUB_TOKEN
-- composer install --prefer-dist
-
 script:
 - php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/ # Missed debug code checker
 - php .travis/phppec.php component/ libraries/reditem/ modules/ plugins/ #parse error checker
