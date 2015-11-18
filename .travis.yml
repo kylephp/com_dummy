@@ -1,0 +1,16 @@
+language: php
+env:
+  global:
+    - CLOUD_NAME=kylephp
+    - GITHUB_TOKEN=89c98a94a2b870cfc4fb1659163bb26bb3159ece
+    - ORGANIZATION=KYLE-LAB
+    - REPO=com_dummy
+php:
+- 5.5
+
+script:
+- php .travis/misseddebugcodechecker.php component/ libraries/dummy/ modules/ plugins/ # Missed debug code checker
+- php .travis/phppec.php component/ libraries/reditem/ modules/ plugins/ #parse error checker
+
+notifications:
+  slack: kyle-lab:r0E7kYW6WZtgxPnZVlKa8k6A
