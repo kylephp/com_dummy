@@ -2,24 +2,21 @@
 <config>
 	<fieldset name="global" label="COM_DUMMY_GLOBAL_CONFIGURATION">
 		<field
-				name="JSON_RPC_API"
+				name="json_rpc_api"
 				type="text"
-				label="JSON_RPC_API"
-				description="COM_DUMMY_GLOBAL_CONFIGURATION"
+				label="COM_DUMMY_CONFIG_JSON_RPC_API"
 				default="http://all6.demo.php/pegasus-mobile-sales-service/server.php"
 		/>
 		<field
-				name="JSON_RPC_API_USER"
+				name="json_rpc_api_user"
 				type="text"
-				label="JSON_RPC_API_USER"
-				description="COM_DUMMY_GLOBAL_CONFIGURATION"
+				label="COM_DUMMY_CONFIG_JSON_RPC_API_USER"
 				default="testken4@contemi.com"
 		/>
 		<field
-				name="JSON_RPC_API_PASS"
+				name="json_rpc_api_pass"
 				type="text"
-				label="JSON_RPC_API_PASS"
-				description="COM_DUMMY_GLOBAL_CONFIGURATION"
+				label="COM_DUMMY_CONFIG_JSON_RPC_API_PASS"
 				default="Palomino1"
 		/>
 	</fieldset>

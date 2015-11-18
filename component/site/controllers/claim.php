@@ -155,14 +155,17 @@ class DummyControllerClaim extends RControllerAdmin
     {
 
         $params = JComponentHelper::getParams('com_dummy');
-        $api = $params->get('JSON_RPC_API');
-        $user = $params->get('JSON_RPC_API_USER');
-        $pass = $params->get('JSON_RPC_API_PASS');
+        $api = $params->get('json_rpc_api');
+        $user = $params->get('json_rpc_api_user');
+        $pass = $params->get('json_rpc_api_pass');
 
-        $client = new \DummyHelperClient( $api, $user, $pass);
-        if (true === $login) {
+        $client = new \DummyHelperClient($api, $user, $pass);
+
+        if (true === $login) 
+        {
             $client->login();
         }
+
         return $client;
     }
 
