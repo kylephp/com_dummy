@@ -7,7 +7,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 defined('_JEXEC') or die();
-var_dump('123');
+
 JHTML::_('behavior.formvalidation');
 JHtml::_('rjquery.chosen', 'select');
 JHtml::_('behavior.modal', 'a.modal-thumb');
