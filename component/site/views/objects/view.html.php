@@ -130,7 +130,7 @@ class DummyViewObjects extends DummyView
 		$edit = RToolbarBuilder::createEditButton('object.edit');
 		$secondGroup->addButton($edit);
 		$delete = RToolbarBuilder::createDeleteButton('objects.delete');
-		$secondGroup->addButton($delete);
+		$thirdGroup->addButton($delete);
 
 		$toolbar = new RToolbar;
 		$toolbar->addGroup($firstGroup)->addGroup($secondGroup)->addGroup($thirdGroup);

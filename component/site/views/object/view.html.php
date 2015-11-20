@@ -72,18 +72,16 @@ class DummyViewObject extends DummyView
 	 */
 	public function getToolbar()
 	{
-		$group = new RToolbarButtonGroup;
+		$group1 = new RToolbarButtonGroup;
 
 		$save = RToolbarBuilder::createSaveButton('object.apply');
 		$saveAndClose = RToolbarBuilder::createSaveAndCloseButton('object.save');
 		$saveAndNew = RToolbarBuilder::createSaveAndNewButton('object.save2new');
-		$save2Copy = RToolbarBuilder::createSaveAsCopyButton('object.save2copy');
-
-
-		$group->addButton($save)
-			->addButton($saveAndClose)
-			->addButton($saveAndNew)
-			->addButton($save2Copy);
+		$group1->addButton($save);
+		$group2 = new RToolbarButtonGroup;
+		$group2->addButton($saveAndClose);
+		$group3 = new RToolbarButtonGroup;
+		$group3->addButton($saveAndNew);
 
 		if (empty($this->item->id))
 		{
@@ -93,11 +91,14 @@ class DummyViewObject extends DummyView
 		{
 			$cancel = RToolbarBuilder::createCloseButton('object.cancel');
 		}
-
-		$group->addButton($cancel);
+		$group5 = new RToolbarButtonGroup;
+		$group5->addButton($cancel);
 
 		$toolbar = new RToolbar;
-		$toolbar->addGroup($group);
+		$toolbar->addGroup($group1)
+			->addGroup($group2)
+			->addGroup($group3)
+			->addGroup($group5);
 
 		return $toolbar;
 	}
