@@ -20,4 +20,21 @@
 				default="Palomino1"
 		/>
 	</fieldset>
+	<fieldset name="vardia" label="COM_DUMMY_VARDIA_CONFIGURATION">
+		<field
+				name="search_customer_api"
+				type="text"
+				label="COM_DUMMY_CONFIG_SEARCH_CUSTOMER_API"
+		/>
+		<field
+				name="get_policies_api"
+				type="text"
+				label="COM_DUMMY_CONFIG_GET_POLICIES_API"
+		/>
+		<field
+				name="get_quotes_api"
+				type="text"
+				label="COM_DUMMY_CONFIG_GET_QUOTES_API"
+		/>
+	</fieldset>
 </config>
