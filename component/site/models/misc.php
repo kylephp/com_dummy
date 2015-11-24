@@ -20,6 +20,12 @@ class DummyModelMisc extends JModelLegacy
 {
     public function getPolicies()
     {
+
+        $match = DummyHelperBblvardia::factory();
+        var_dump($match);
+
+
+        die('what');
         return array('abc');
     }
 }

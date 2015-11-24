@@ -9,6 +9,11 @@ class DummyHelperBblvardia
 {
     private $bblLoginAPI;
 
+    private $bblLoginEmail;
+
+    private $bblLoginPass;
+
+
     private $vardiaCustomerSearchAPI;
 
     private $vardiaGetPolicyAPI;
@@ -18,9 +23,36 @@ class DummyHelperBblvardia
     private $bblUser;
 
 
-    public function construct()
+    /**
+     * Create new instance of DummyHelperBBlvardia
+     * @return DummyHelperBblvardia
+     */
+    public static function factory()
     {
+        $match = new Self();
 
+        $params = JComponentHelper::getParams('com_dummy');
+
+        $bblLoginApi = $params->get('bbl_login_api');
+        $match->setBblLoginAPI($bblLoginApi);
+
+        $bbLoginEmail = $params->get('bbl_login_email');
+        $match->setBblLoginEmail($bbLoginEmail);
+
+        $bbLoginPass = $params->get('bbl_login_pass');
+        $match->setBblLoginPass($bbLoginPass);
+
+
+        $vardiaSearchCustomerApi = $params->get('search_customer_api');
+        $match->setVardiaCustomerSearchAPI($vardiaSearchCustomerApi);
+
+        $vardiaGetPolicyApi = $params->get('get_policies_api');
+        $match->setVardiaGetPolicyAPI($vardiaGetPolicyApi);
+
+        $vardiaGetQuoteApi = $params->get('get_quotes_api');
+        $match->setVardiaGetQuoteAPI($vardiaGetQuoteApi);
+
+        return $match;
     }
 
     /**
@@ -55,6 +87,22 @@ class DummyHelperBblvardia
         $this->vardiaGetQuoteAPI = $vardiaGetQuoteAPI;
     }
 
+    /**
+     * @param mixed $bblLoginEmail
+     */
+    public function setBblLoginEmail($bblLoginEmail)
+    {
+        $this->bblLoginEmail = $bblLoginEmail;
+    }
+
+    /**
+     * @param mixed $bblLoginPass
+     */
+    public function setBblLoginPass($bblLoginPass)
+    {
+        $this->bblLoginPass = $bblLoginPass;
+    }
+
 
     /**
      * Login and set result to $this->bblUser
@@ -62,7 +110,7 @@ class DummyHelperBblvardia
      * @param $pass
      * @param $bbl
      */
-    public function bblLogin( $user, $pass, $bbl)
+    public function bblLogin($user, $pass, $bbl)
     {
 
     }
@@ -82,7 +130,6 @@ class DummyHelperBblvardia
     {
 
     }
-
 
 
 }
