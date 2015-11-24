@@ -22,7 +22,7 @@ class DummyModelMisc extends JModelLegacy
      * Method to get list of policies
      * @return mixed
      */
-    public function getPolicies()
+    public function getData()
     {
         $match = DummyHelperBblvardia::factory();
 
@@ -32,6 +32,9 @@ class DummyModelMisc extends JModelLegacy
             $policies = $match->vardiaGetPolicies();
         }
 
-        return array();
+        return array(
+            'customer' => $customer,
+            'policies' => $policies
+        );
     }
 }

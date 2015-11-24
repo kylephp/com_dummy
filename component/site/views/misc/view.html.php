@@ -19,12 +19,7 @@ class DummyViewMisc extends JViewLegacy
 	public function display($tpl = null)
 	{
 
-		$this->policies = $this->getModel()->getPolicies();
-
-		/*
-		$app        = JFactory::getApplication();
-		$user       = JFactory::getUser();
-		*/
+		$this->policies = $this->getModel()->get('Data');
 
 		return parent::display($tpl);
 	}
