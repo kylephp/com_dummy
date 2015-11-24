@@ -18,4 +18,8 @@ defined('_JEXEC') or die;
  */
 class DummyModelMisc extends JModelLegacy
 {
+    public function getPolicies()
+    {
+        return array('abc');
+    }
 }
