@@ -106,13 +106,40 @@ class DummyHelperBblvardia
 
     /**
      * Login and set result to $this->bblUser
-     * @param $user
-     * @param $pass
-     * @param $bbl
+     * @return bool
+     * @throws Exception
      */
-    public function bblLogin($user, $pass, $bbl)
+    public function bblLogin()
     {
+        if( !$this->bblUser ) {
+            $authKey = '63cead7ef39c7d288ca234a91416806adac47e438ad7907318b33a4fda4e4993'; //TODO calculate this
 
+            $curl = \DummyHelperCurl::init($this->bblLoginAPI)
+                ->addHttpHeader('Content-type', 'application/json')
+                ->addHttpHeader('auth-key', $authKey)
+                ->addHttpHeader('bblid', 4)
+                ->setPost(TRUE)
+                ->setTimeOut(30)
+                ->setPostFields("{\"email\":\"{$this->bblLoginEmail}\", \"password\": \"{$this->bblLoginPass}\"}")
+                ->setReturnTransfer(TRUE);
+
+            $response = $curl->execute();
+            $curl->close();
+
+            if ($response) {
+                $response = json_decode($response, true);
+                if (is_array($response) && isset($response['success']) && $response['success'] == true && isset($response['data']['member'])) {
+                    //Login success
+                    $this->bblUser = $response['data']['member'];
+                    return true;
+                }
+                return false;
+            }
+
+            throw new Exception("Can't login, there is something wrong with API Call");
+        }
+
+        return true;
     }
 
 
