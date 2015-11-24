@@ -18,6 +18,10 @@ defined('_JEXEC') or die;
  */
 class DummyModelMisc extends JModelLegacy
 {
+    /**
+     * Method to get list of policies
+     * @return mixed
+     */
     public function getPolicies()
     {
 
@@ -27,7 +31,6 @@ class DummyModelMisc extends JModelLegacy
             $match->vardiaSearchCustomer();
         };
 
-        die('what');
-        return array('abc');
+        return array();
     }
 }

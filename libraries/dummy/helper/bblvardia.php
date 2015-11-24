@@ -13,7 +13,6 @@ class DummyHelperBblvardia
 
     private $bblLoginPass;
 
-
     private $vardiaCustomerSearchAPI;
 
     private $vardiaGetPolicyAPI;
@@ -143,20 +142,30 @@ class DummyHelperBblvardia
     }
 
 
+    /**
+     * [vardiaSearchCustomer description]
+     * @return [type] [description]
+     */
     public function vardiaSearchCustomer()
     {
 
     }
 
+    /**
+     * [vardiaGetPolicy description]
+     * @return [type] [description]
+     */
     public function vardiaGetPolicy()
     {
 
     }
 
+    /**
+     * [vardiaGetQuote description]
+     * @return [type] [description]
+     */
     public function vardiaGetQuote()
     {
 
     }
-
-
 }
