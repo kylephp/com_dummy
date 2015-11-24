@@ -155,7 +155,7 @@ class DummyHelperBblvardia
      * [vardiaGetPolicy description]
      * @return [type] [description]
      */
-    public function vardiaGetPolicy()
+    public function vardiaGetPolicies()
     {
 
     }
