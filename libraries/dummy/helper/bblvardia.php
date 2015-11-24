@@ -5,7 +5,7 @@
  * Date: 24/11/2015
  * Time: 13:45
  */
-class DummyHelperBblVardia
+class DummyHelperBblvardia
 {
     private $bblLoginAPI;
 
