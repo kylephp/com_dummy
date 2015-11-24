@@ -1,2 +1,2 @@
 <?php
-echo 'Misc view';
+var_dump( $this->policies);
