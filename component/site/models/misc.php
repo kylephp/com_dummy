@@ -25,9 +25,12 @@ class DummyModelMisc extends JModelLegacy
     public function getPolicies()
     {
         $match = DummyHelperBblvardia::factory();
-        if($match->bblLogin()){
-            return $match->vardiaGetPolicies();
-        };
+
+        if ($match->bblLogin())
+        {
+            $customer = $match->vardiaSearchCustomer();
+            $policies = $match->vardiaGetPolicies();
+        }
 
         return array();
     }

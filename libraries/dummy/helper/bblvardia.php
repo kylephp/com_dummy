@@ -21,6 +21,8 @@ class DummyHelperBblvardia
 
     private $bblUser;
 
+    private $vardiaCustomer;
+
 
     /**
      * Create new instance of DummyHelperBBlvardia
@@ -148,7 +150,41 @@ class DummyHelperBblvardia
      */
     public function vardiaSearchCustomer()
     {
+        if (!isset($this->bblUser['email']))
+        {
+            return false;
+        }
 
+        $request = $this->vardiaCustomerSearchAPI . '?email=' . $this->bblUser['email'];
+        $curl = \DummyHelperCurl::init($this->vardiaCustomerSearchAPI)
+            ->setReturnTransfer(TRUE);
+
+        $response = $curl->execute();
+        $curl->close();
+
+        if ($response) 
+        {
+            $response = json_decode($response, true);
+
+            if (is_array($response) && isset($response['results'])) 
+            {
+                $customers = $response['results'];
+
+                foreach ($customers as $customer) 
+                {
+                   $partners = $customer['partners'];
+                 
+                   if (empty($partners) || $partners[0]['sourceSystem'] == 'SourceSystem_CPS1')
+                   {
+                        $this->vardiaCustomer = $customer;
+                        
+                        return $this->vardiaCustomer;
+                   }
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
