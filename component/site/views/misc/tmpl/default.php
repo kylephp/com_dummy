@@ -18,37 +18,37 @@ $bblUser = $bbl->getBblUserInfo();
 		  		<div class="col-sm-6">
 		  			<div class="form-group">
 		  				<label class="control-label" for="firstname">
-		  					First Name:
+		  					<?php echo JText::_('COM_DUMMY_MISC_FIRSTNAME')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['firstname']?></p>
 					    </div>
 					    <label class="control-label" for="lastname">
-		  					Last Name:
+		  					<?php echo JText::_('COM_DUMMY_MISC_LASTNAME')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['lastname']?></p>
 					    </div>
 		  				<label class="control-label" for="email">
-		  					Email:
+		  					<?php echo JText::_('COM_DUMMY_MISC_EMAIL')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['email']?></p>
 					    </div>
 					    <label class="control-label" for="gender">
-		  					Gender:
+		  					<?php echo JText::_('COM_DUMMY_MISC_GENDER')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['gender']?></p>
 					    </div>
 					    <label class="control-label" for="address">
-		  					Address:
+		  					<?php echo JText::_('COM_DUMMY_MISC_ADDRESS')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['address']?></p>
 					    </div>
 					    <label class="control-label" for="postcode">
-		  					Postcode:
+		  					<?php echo JText::_('COM_DUMMY_MISC_POSTCODE')?>
 		  				</label>
 		  				<div class="control-input">	
 					      <p class="form-control-static"><?php echo $bblUser['postcode']?></p>
@@ -58,13 +58,13 @@ $bblUser = $bbl->getBblUserInfo();
 		  		<div class="col-sm-6">
 		  			<div class="form-group">
 			  			<label class="control-label" for="membernumber">
-			  					Member Number:
+			  				<?php echo JText::_('COM_DUMMY_MISC_MEMBER_NUMBER')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['membernumber']?></p>
 					    </div>
 					    <label class="control-label" for="membershipcardnumber">
-			  					Membership Card No.:
+			  				<?php echo JText::_('COM_DUMMY_MISC_MEMBERSHIP_CARD_NO')?>
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['membershipcardnumber']?></p>
@@ -75,16 +75,16 @@ $bblUser = $bbl->getBblUserInfo();
 	  </div>
 
 	  <!-- Table Policies-->
-	  <h3>My Policies</h3>
+	  <h3><?php echo JText::_('COM_DUMMY_MISC_MY_POLICIES')?></h3>
 	  <table class="table">
 	    <thead>
 	      <tr>
-	        <th>Policy Id</th>
-	        <th>Contract Id</th>
-	        <th>Partner Name</th>
-	        <th>Product Name</th>
-	        <th>Status</th>
-	        <th>Object Name</th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_POLICY_ID')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_CONTRACT_ID')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_PARTNER_NAME')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_PRODUCT_NAME')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_STATUS')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_OBJECT_NAME')?></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -101,16 +101,16 @@ $bblUser = $bbl->getBblUserInfo();
 	  </table>
 
 	  <!-- Table Quotes-->
-	  <h3>My Quotes</h3>
+	  <h3><?php echo JText::_('COM_DUMMY_MISC_MY_QUOTES')?></h3>
 	  <table class="table">
 	    <thead>
 	      <tr>
-	        <th>Quote Id</th>
-	        <th>Quote Ref</th>
-	        <th>Quote Name</th>
-	        <th>Product Name</th>
-	        <th>Status</th>
-	        <th>Amount Gross</th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_QUOTE_ID')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_QUOTE_REF')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_QUOTE_NAME')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_PRODUCT_NAME')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_STATUS')?></th>
+	        <th><?php echo JText::_('COM_DUMMY_MISC_AMOUNT_GROSS')?></th>
 	      </tr>
 	    </thead>
 	    <tbody>
