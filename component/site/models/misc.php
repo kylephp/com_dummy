@@ -33,6 +33,7 @@ class DummyModelMisc extends JModelLegacy
         }
 
         return array(
+            'bbl' => $match,
             'customer' => $customer,
             'policies' => $policies
         );

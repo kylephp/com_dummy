@@ -104,6 +104,14 @@ class DummyHelperBblvardia
         $this->bblLoginPass = $bblLoginPass;
     }
 
+    /**
+     * Method to get current logged user
+     * @return array
+     */
+    public function getBblUserInfo()
+    {
+        return $this->bblUser;
+    }
 
     /**
      * Login and set result to $this->bblUser
@@ -155,6 +163,7 @@ class DummyHelperBblvardia
             return false;
         }
 
+        $email = trim(strtolower($this->bblUser['email']));
         $request = $this->vardiaCustomerSearchAPI . '?email=' . $this->bblUser['email'];
         $curl = \DummyHelperCurl::init($this->vardiaCustomerSearchAPI)
             ->setReturnTransfer(TRUE);
@@ -173,8 +182,11 @@ class DummyHelperBblvardia
                 foreach ($customers as $customer) 
                 {
                    $partners = $customer['partners'];
-                 
-                   if (empty($partners) || $partners[0]['sourceSystem'] == 'SourceSystem_CPS1')
+                   $compare = trim(strtolower($customer['email']));
+
+                   if (!empty($partners) 
+                        && $partners[0]['sourceSystem'] == 'SourceSystem_CPS1'
+                        && $compare == $email)
                    {
                         $this->vardiaCustomer = $customer;
                         
