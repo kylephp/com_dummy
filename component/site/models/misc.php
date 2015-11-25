@@ -30,11 +30,13 @@ class DummyModelMisc extends JModelLegacy
         {
             $customer = $match->vardiaSearchCustomer();
             $policies = $match->vardiaGetPolicies();
+            $quotes = $match->vardiaGetQuotes();
         }
 
         return array(
             'customer' => $customer,
-            'policies' => $policies
+            'policies' => $policies,
+            'quotes' => $quotes
         );
     }
 }

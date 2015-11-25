@@ -166,22 +166,22 @@ class DummyHelperBblvardia
         $response = $curl->execute();
         $curl->close();
 
-        if ($response) 
+        if ($response)
         {
             $response = json_decode($response, true);
 
-            if (is_array($response) && isset($response['results'])) 
+            if (is_array($response) && isset($response['results']))
             {
                 $customers = $response['results'];
 
-                foreach ($customers as $customer) 
+                foreach ($customers as $customer)
                 {
                    $partners = $customer['partners'];
-                 
+
                    if (empty($partners) || $partners[0]['sourceSystem'] == 'SourceSystem_CPS1')
                    {
                         $this->vardiaCustomer = $customer;
-                        
+
                         return $this->vardiaCustomer;
                    }
                 }
@@ -197,21 +197,23 @@ class DummyHelperBblvardia
      */
     private function parseCustomerIdAndPartnerIds()
     {
-        if( !$this->vardiaCustomerId || empty($this->vardiaPartnerIds)){
-            $this->vardiaCustomerId = isset($this->vardiaCustomer['customerId'])
-                ? $this->vardiaCustomer['customerId']
-                : null;
+        if( $this->vardiaCustomerId && !empty($this->vardiaPartnerIds)){
+            return true;
+        }
 
-            if( $this->vardiaCustomerId){
-                if (isset($this->vardiaCustomer['partners'])) {
-                    foreach ($this->vardiaCustomer['partners'] as $partner) {
-                        if (isset($partner['partnerId'])) {
-                            $this->vardiaPartnerIds[] = $partner['partnerId'];
-                        }
+        $this->vardiaCustomerId = isset($this->vardiaCustomer['customerId'])
+            ? $this->vardiaCustomer['customerId']
+            : null;
+
+        if( $this->vardiaCustomerId){
+            if (isset($this->vardiaCustomer['partners'])) {
+                foreach ($this->vardiaCustomer['partners'] as $partner) {
+                    if (isset($partner['partnerId'])) {
+                        $this->vardiaPartnerIds[] = $partner['partnerId'];
                     }
                 }
-                return true;
             }
+            return true;
         }
 
         return false;
@@ -243,7 +245,6 @@ class DummyHelperBblvardia
     private function getVardiaPoliciesByCustomerIdAndPartnerId($apiUrl)
     {
         $result = file_get_contents($apiUrl);
-
         $result = json_decode($result, true);
 
         return is_array($result) ? $result : array();
@@ -253,8 +254,27 @@ class DummyHelperBblvardia
      * [vardiaGetQuote description]
      * @return [type] [description]
      */
-    public function vardiaGetQuote()
+    public function vardiaGetQuotes()
     {
+        $quotes = array();
+        if($this->parseCustomerIdAndPartnerIds()){
 
+            foreach( $this->vardiaPartnerIds as $partnerId) {
+                $apiUrl = $this->vardiaGetQuoteAPI . "?request[0][customerId]={$this->vardiaCustomerId}&request[0][partnerId]=$partnerId";
+
+                $result = file_get_contents($apiUrl);
+                $result = json_decode($result, true);
+
+                if(is_array($result)){
+                    foreach($result as $item){
+                        if( isset($item['quotes']) && is_array($item['quotes'])){
+                            $quotes = array_merge($quotes, $item['quotes']);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $quotes;
     }
 }
