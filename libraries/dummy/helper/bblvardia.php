@@ -7,6 +7,8 @@
  */
 class DummyHelperBblvardia
 {
+    private $bblPrivateKey = 'GIU1spfAmfBRa6tw8Xub5qypw7dTlnvi';
+
     private $bblLoginAPI;
 
     private $bblLoginEmail;
@@ -125,7 +127,13 @@ class DummyHelperBblvardia
     public function bblLogin()
     {
         if (!$this->bblUser) {
-            $authKey = '63cead7ef39c7d288ca234a91416806adac47e438ad7907318b33a4fda4e4993'; //TODO calculate this
+
+            $queryString = preg_split("/[?]+/", $this->bblLoginAPI);
+            $queryString = isset($queryString[1]) ? $queryString[1] : '';
+            $authKey = hash_hmac('sha256', $queryString, $this->bblPrivateKey, false);
+
+            //$authKey2 = '63cead7ef39c7d288ca234a91416806adac47e438ad7907318b33a4fda4e4993'; //TODO calculate this
+            //var_dump($authKey === $authKey2);exit;
 
             $curl = \DummyHelperCurl::init($this->bblLoginAPI)
                 ->addHttpHeader('Content-type', 'application/json')
