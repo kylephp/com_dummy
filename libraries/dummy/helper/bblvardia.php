@@ -174,7 +174,7 @@ class DummyHelperBblvardia
 
         $email = trim(strtolower($this->bblUser['email']));
         $transport = new JHttpTransportCurl(new JRegistry);
-        $uri = new JUri($this->vardiaCustomerSearchAPI . '?email=' . $email);
+        $uri = JUri::getInstance($this->vardiaCustomerSearchAPI . '?email=' . $email);
         $response = $transport->request('GET', $uri);
 
         if ($response)

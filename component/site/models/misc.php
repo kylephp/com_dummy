@@ -19,19 +19,21 @@ defined('_JEXEC') or die;
 class DummyModelMisc extends JModelLegacy
 {
     /**
-     * Method to get list of policies
+     * Method to get user data
      * @return mixed
      */
     public function getData()
     {
         $match = DummyHelperBblvardia::factory();
 
-        if ($match->bblLogin())
+        if (!$match->bblLogin())
         {
-            $customer = $match->vardiaSearchCustomer();
-            $policies = $match->vardiaGetPolicies();
-            $quotes = $match->vardiaGetQuotes();
+            return false;
         }
+
+        $customer = $match->vardiaSearchCustomer();
+        $policies = $match->vardiaGetPolicies();
+        $quotes = $match->vardiaGetQuotes();
 
         return array(
             'bbl' => $match,

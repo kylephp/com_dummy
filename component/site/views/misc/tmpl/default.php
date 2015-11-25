@@ -1,7 +1,9 @@
 <?php
 defined('_JEXEC') or die;
-extract($this->data);
-$bblUser = $bbl->getBblUserInfo();
+if ($this->data):
+	extract($this->data);
+	$bblUser = $bbl->getBblUserInfo();
+endif;
 ?>
 <style>
 	.form-group label {
@@ -10,6 +12,14 @@ $bblUser = $bbl->getBblUserInfo();
 	}
 </style>
 <div class="container-fluid">
+	<?php if (!$this->data): ?>
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<div class="pagination-centered">
+				<h3><?php echo JText::_('COM_DUMMY_MISC_LOGIN_FAILED'); ?></h3>
+			</div>
+		</div>
+	<?php else:?>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading"><?php echo JText::_('COM_DUMMY_MISC_CUSTOMER_INFORMATION')?></div>
@@ -126,4 +136,5 @@ $bblUser = $bbl->getBblUserInfo();
 	     <?php endforeach; ?>
 	  </table>
 	</div>
+	<?php endif;?>
 </div>
