@@ -173,16 +173,13 @@ class DummyHelperBblvardia
         }
 
         $email = trim(strtolower($this->bblUser['email']));
-        $request = $this->vardiaCustomerSearchAPI . '?email=' . $this->bblUser['email'];
-        $curl = \DummyHelperCurl::init($this->vardiaCustomerSearchAPI)
-            ->setReturnTransfer(TRUE);
-
-        $response = $curl->execute();
-        $curl->close();
+        $transport = new JHttpTransportCurl(new JRegistry);
+        $uri = new JUri($this->vardiaCustomerSearchAPI . '?email=' . $email);
+        $response = $transport->request('GET', $uri);
 
         if ($response)
         {
-            $response = json_decode($response, true);
+            $response = json_decode($response->body, true);
 
             if (is_array($response) && isset($response['results']))
             {
