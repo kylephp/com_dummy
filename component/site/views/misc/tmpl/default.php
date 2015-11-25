@@ -12,7 +12,7 @@ $bblUser = $bbl->getBblUserInfo();
 <div class="container-fluid">
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">Customer Information</div>
+	  <div class="panel-heading"><?php echo JText::_('COM_DUMMY_MISC_CUSTOMER_INFORMATION')?></div>
 	  <div class="panel-body">
 	 		<div class="row">
 		  		<div class="col-sm-6">
@@ -41,18 +41,6 @@ $bblUser = $bbl->getBblUserInfo();
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['gender']?></p>
 					    </div>
-					    <label class="control-label" for="address">
-		  					<?php echo JText::_('COM_DUMMY_MISC_ADDRESS')?>
-		  				</label>
-		  				<div class="control-input">
-					      <p class="form-control-static"><?php echo $bblUser['address']?></p>
-					    </div>
-					    <label class="control-label" for="postcode">
-		  					<?php echo JText::_('COM_DUMMY_MISC_POSTCODE')?>
-		  				</label>
-		  				<div class="control-input">	
-					      <p class="form-control-static"><?php echo $bblUser['postcode']?></p>
-					    </div>
 		  			</div>
 		  		</div>
 		  		<div class="col-sm-6">
@@ -68,6 +56,18 @@ $bblUser = $bbl->getBblUserInfo();
 		  				</label>
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['membershipcardnumber']?></p>
+					    </div>
+			    	    <label class="control-label" for="address">
+		  					<?php echo JText::_('COM_DUMMY_MISC_ADDRESS')?>
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['address']?></p>
+					    </div>
+					    <label class="control-label" for="postcode">
+		  					<?php echo JText::_('COM_DUMMY_MISC_POSTCODE')?>
+		  				</label>
+		  				<div class="control-input">	
+					      <p class="form-control-static"><?php echo $bblUser['postcode']?></p>
 					    </div>
 				    </div>
 		  		</div>
