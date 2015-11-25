@@ -23,6 +23,10 @@ class DummyHelperBblvardia
 
     private $vardiaCustomer;
 
+    private $vardiaCustomerId;
+
+    private $vardiaPartnerIds = array();
+
 
     /**
      * Create new instance of DummyHelperBBlvardia
@@ -188,39 +192,54 @@ class DummyHelperBblvardia
     }
 
     /**
+     * Parse customerId and partner ids from result of search customer
+     * @return bool
+     */
+    private function parseCustomerIdAndPartnerIds()
+    {
+        if( !$this->vardiaCustomerId || empty($this->vardiaPartnerIds)){
+            $this->vardiaCustomerId = isset($this->vardiaCustomer['customerId'])
+                ? $this->vardiaCustomer['customerId']
+                : null;
+
+            if( $this->vardiaCustomerId){
+                if (isset($this->vardiaCustomer['partners'])) {
+                    foreach ($this->vardiaCustomer['partners'] as $partner) {
+                        if (isset($partner['partnerId'])) {
+                            $this->vardiaPartnerIds[] = $partner['partnerId'];
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    /**
      * [vardiaGetPolicy description]
      * @return [type] [description]
      */
     public function vardiaGetPolicies()
     {
-        $isVardiaCustomer = !!$this->vardiaCustomer;
-        $vardiaCustomer =  $this->vardiaCustomer; // json_decode("{\"customerId\":\"23\",\"nin\":\"198403150751\",\"name\":\"Kivan Kaivanipour\",\"email\":\"Kaivanipour@contemi.com.vn\",\"mobileNumber\":\"083899456\",\"telephoneNumber\":\"\",\"customerFlag\":\"Ingen markering\",\"dateOfBirth\":\"1984-03-15T00:00:00Z\",\"address\":\"Rådmansgatan 76 C Lgh 1101, Stockholm, 11360\",\"customerType\":\"Private\",\"partners\":[{\"customerId\":\"12\",\"customerReference\":\"10011\",\"partnerId\":\"1\",\"partnerName\":\"Vardia bil & boendeförsäkring\",\"sourceSystem\":\"SourceSystem_CPS1\",\"customerStatus\":\"Active\"},{\"customerId\":\"23\",\"customerReference\":\"10023\",\"partnerId\":\"14\",\"partnerName\":\"AON Direkt Försäkringsservice\",\"sourceSystem\":\"SourceSystem_CPS1\",\"customerStatus\":\"Active\"}]}", true);
-
-        $vardiaCustomerId = isset($vardiaCustomer['customerId']) ? $vardiaCustomer['customerId'] : null;
-
-        if ($isVardiaCustomer && is_array($vardiaCustomer) && $vardiaCustomerId) {
-            $partnerIds = array();
-
-            if (isset($vardiaCustomer['partners'])) {
-                foreach ($vardiaCustomer['partners'] as $partner) {
-                    if (isset($partner['partnerId'])) {
-                        $partnerIds[] = $partner['partnerId'];
-                    }
-                }
-            }
-
+        if ($this->parseCustomerIdAndPartnerIds()) {
             $policies = array();
-            foreach ($partnerIds as $partnerId) {
-                $apiUrl = $this->vardiaGetPolicyAPI . "?customerId=$vardiaCustomerId&partnerId=$partnerId";
-
+            foreach ($this->vardiaPartnerIds as $partnerId) {
+                $apiUrl = $this->vardiaGetPolicyAPI . "?customerId=$this->vardiaCustomerId&partnerId=$partnerId";
                 $policies = array_merge($policies, $this->getVardiaPoliciesByCustomerIdAndPartnerId($apiUrl));
             }
 
+            die(print_r( $policies));
             return $policies;
 
         }
         return array();
     }
+
+
 
     private function getVardiaPoliciesByCustomerIdAndPartnerId($apiUrl)
     {
