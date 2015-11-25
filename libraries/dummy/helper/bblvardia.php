@@ -232,7 +232,6 @@ class DummyHelperBblvardia
                 $policies = array_merge($policies, $this->getVardiaPoliciesByCustomerIdAndPartnerId($apiUrl));
             }
 
-            die(print_r( $policies));
             return $policies;
 
         }
