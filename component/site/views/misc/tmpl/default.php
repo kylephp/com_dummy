@@ -1,6 +1,7 @@
 <?php
 defined('_JEXEC') or die;
-
+extract($this->data);
+$bblUser = $bbl->getBblUserInfo();
 ?>
 <style>
 	.form-group label {
@@ -20,25 +21,55 @@ defined('_JEXEC') or die;
 		  					First Name:
 		  				</label>
 		  				<div class="control-input">
-					      <p class="form-control-static">Andreas Syse</p>
+					      <p class="form-control-static"><?php echo $bblUser['firstname']?></p>
 					    </div>
 					    <label class="control-label" for="lastname">
 		  					Last Name:
 		  				</label>
 		  				<div class="control-input">
-					      <p class="form-control-static">Andreas Syse</p>
+					      <p class="form-control-static"><?php echo $bblUser['lastname']?></p>
+					    </div>
+		  				<label class="control-label" for="email">
+		  					Email:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['email']?></p>
+					    </div>
+					    <label class="control-label" for="gender">
+		  					Gender:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['gender']?></p>
+					    </div>
+					    <label class="control-label" for="address">
+		  					Address:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['address']?></p>
+					    </div>
+					    <label class="control-label" for="postcode">
+		  					Postcode:
+		  				</label>
+		  				<div class="control-input">	
+					      <p class="form-control-static"><?php echo $bblUser['postcode']?></p>
 					    </div>
 		  			</div>
 		  		</div>
 		  		<div class="col-sm-6">
 		  			<div class="form-group">
-		  				<label class="control-label" for="email">
-		  					Email:
+			  			<label class="control-label" for="membernumber">
+			  					Member Number:
 		  				</label>
 		  				<div class="control-input">
-					      <p class="form-control-static">someone@example.com</p>
+					      <p class="form-control-static"><?php echo $bblUser['membernumber']?></p>
 					    </div>
-		  			</div>
+					    <label class="control-label" for="membershipcardnumber">
+			  					Membership Card No.:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['membershipcardnumber']?></p>
+					    </div>
+				    </div>
 		  		</div>
 	  		</div>
 	  </div>
