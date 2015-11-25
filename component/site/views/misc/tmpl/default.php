@@ -2,6 +2,7 @@
 defined('_JEXEC') or die;
 extract($this->data);
 $bblUser = $bbl->getBblUserInfo();
+var_dump($quotes);exit;
 ?>
 <style>
 	.form-group label {
@@ -88,14 +89,16 @@ $bblUser = $bbl->getBblUserInfo();
 	      </tr>
 	    </thead>
 	    <tbody>
+	    <?php foreach ($policies as $policy):?>
 	      <tr>
-	        <td>30052</th>
-	        <td>130051</td>
-	        <td>Vardia bil & boendeförsäkring</td>
-	        <td>Hem</td>
-	        <td>Active</td>
-	        <td>Skeppsbrogatan 13 C Lgh 1002</td>
+	        <td><?php echo $policy['policyId']?></th>
+	        <td><?php echo $policy['contractId']?></td>
+	        <td><?php echo $policy['partnerName']?></td>
+	        <td><?php echo $policy['productName']?></td>
+	        <td><?php echo $policy['status']?></td>
+	        <td><?php echo $policy['objectName']?></td>
 	      </tr>
+	     <?php endforeach; ?>
 	  </table>
 
 	  <!-- Table Quotes-->
@@ -112,14 +115,16 @@ $bblUser = $bbl->getBblUserInfo();
 	      </tr>
 	    </thead>
 	    <tbody>
+	      <?php foreach ($quotes as $quote):?>
 	      <tr>
-	        <td>20037</th>
-	        <td>20037</td>
-	        <td>Skeppsbrogatan 13 C Lgh 1002</td>
-	        <td>Grupphem</td>
-	        <td>Offered</td>
-	        <td>948</td>
+	        <td><?php echo $quote['quoteId']?></th>
+	        <td><?php echo $quote['quoteReference']?></td>
+	        <td><?php echo $quote['quoteName']?></td>
+	        <td><?php echo $quote['productName']?></td>
+	        <td><?php echo $quote['status']?></td>
+	        <td><?php echo $quote['amountGross']?></td>
 	      </tr>
+	     <?php endforeach; ?>
 	  </table>
 	</div>
 </div>
