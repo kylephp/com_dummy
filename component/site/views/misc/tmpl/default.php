@@ -2,7 +2,6 @@
 defined('_JEXEC') or die;
 extract($this->data);
 $bblUser = $bbl->getBblUserInfo();
-var_dump($quotes);exit;
 ?>
 <style>
 	.form-group label {
