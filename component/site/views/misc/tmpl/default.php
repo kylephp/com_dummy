@@ -29,14 +29,12 @@ $bblUser = $bbl->getBblUserInfo();
 		  				<div class="control-input">
 					      <p class="form-control-static"><?php echo $bblUser['lastname']?></p>
 					    </div>
-					    <div class="form-group">
-			  				<label class="control-label" for="email">
-			  					Email:
-			  				</label>
-			  				<div class="control-input">
-						      <p class="form-control-static"><?php echo $bblUser['email']?></p>
-						    </div>
-			  			</div>
+		  				<label class="control-label" for="email">
+		  					Email:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['email']?></p>
+					    </div>
 					    <label class="control-label" for="gender">
 		  					Gender:
 		  				</label>
@@ -58,17 +56,19 @@ $bblUser = $bbl->getBblUserInfo();
 		  			</div>
 		  		</div>
 		  		<div class="col-sm-6">
-		  			<label class="control-label" for="membernumber">
-		  					Member Number:
-	  				</label>
-	  				<div class="control-input">
-				      <p class="form-control-static"><?php echo $bblUser['membernumber']?></p>
-				    </div>
-				    <label class="control-label" for="membershipcardnumber">
-		  					Membership Card No.:
-	  				</label>
-	  				<div class="control-input">
-				      <p class="form-control-static"><?php echo $bblUser['membershipcardnumber']?></p>
+		  			<div class="form-group">
+			  			<label class="control-label" for="membernumber">
+			  					Member Number:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['membernumber']?></p>
+					    </div>
+					    <label class="control-label" for="membershipcardnumber">
+			  					Membership Card No.:
+		  				</label>
+		  				<div class="control-input">
+					      <p class="form-control-static"><?php echo $bblUser['membershipcardnumber']?></p>
+					    </div>
 				    </div>
 		  		</div>
 	  		</div>
