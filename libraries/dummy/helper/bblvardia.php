@@ -7,7 +7,8 @@
  */
 class DummyHelperBblvardia
 {
-    private $bblPrivateKey = 'GIU1spfAmfBRa6tw8Xub5qypw7dTlnvi';
+    //private $bblPrivateKey = 'GIU1spfAmfBRa6tw8Xub5qypw7dTlnvi';
+    private $bblPrivateKey = 'TAr5HM8aFe93SZSEVtCcUITW7rZ153jP';
 
     private $bblLoginAPI;
 
@@ -135,7 +136,7 @@ class DummyHelperBblvardia
             $curl = \DummyHelperCurl::init($this->bblLoginAPI)
                 ->addHttpHeader('Content-type', 'application/json')
                 ->addHttpHeader('auth-key', $authKey)
-                ->addHttpHeader('bblid', 4)
+                //->addHttpHeader('bblid', 4)
                 ->setPost(TRUE)
                 ->setTimeOut(30)
                 ->setPostFields("{\"email\":\"{$this->bblLoginEmail}\", \"password\": \"{$this->bblLoginPass}\"}")
@@ -146,9 +147,9 @@ class DummyHelperBblvardia
 
             if ($response) {
                 $response = json_decode($response, true);
-                if (is_array($response) && isset($response['success']) && $response['success'] == true && isset($response['data']['member'])) {
+                if (is_array($response) && isset($response['success']) && $response['success'] == true && isset($response['data'])) {
                     //Login success
-                    $this->bblUser = $response['data']['member'];
+                    $this->bblUser = $response['data'];
                     return true;
                 }
                 return false;
@@ -195,7 +196,6 @@ class DummyHelperBblvardia
                         && $compare == $email)
                    {
                         $this->vardiaCustomer = $customer;
-
                         return $this->vardiaCustomer;
                    }
                 }
