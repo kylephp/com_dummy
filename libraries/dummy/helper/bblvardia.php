@@ -173,9 +173,18 @@ class DummyHelperBblvardia
             return false;
         }
 
+        //Check for cached vardia customer
+        $cachedVardiaCustomer = $this->getCachedVardiaCustomer();
+        if( $cachedVardiaCustomer ){
+            $this->vardiaCustomer = $cachedVardiaCustomer;
+            return $this->vardiaCustomer;
+        }
+
+        //If there is nothing cached
         $email = trim(strtolower($this->bblUser['email']));
-        $transport = new JHttpTransportCurl(new JRegistry);
         $uri = JUri::getInstance($this->vardiaCustomerSearchAPI . '?email=' . $email);
+
+        $transport = new JHttpTransportCurl(new JRegistry);
         $response = $transport->request('GET', $uri);
 
         if ($response)
@@ -196,6 +205,7 @@ class DummyHelperBblvardia
                         && $compare == $email)
                    {
                         $this->vardiaCustomer = $customer;
+                        $this->cacheVardiaCustomer();
                         return $this->vardiaCustomer;
                    }
                 }
@@ -203,6 +213,25 @@ class DummyHelperBblvardia
         }
 
         return false;
+    }
+
+    /**
+     * Cache vardia customer locally
+     */
+    public function cacheVardiaCustomer()
+    {
+
+        //print_r( $this->vardiaCustomer); exit;
+        return null;
+    }
+
+
+    /**
+     * Look into local database to see if there is any cached customer
+     */
+    public function getCachedVardiaCustomer()
+    {
+        return null;
     }
 
     /**
