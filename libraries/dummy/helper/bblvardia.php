@@ -24,11 +24,24 @@ class DummyHelperBblvardia
 
     private $bblUser;
 
+    private $bblUserId;
+
+    private $bblUserEmail;
+
     private $vardiaCustomer;
 
     private $vardiaCustomerId;
 
     private $vardiaPartnerIds = array();
+
+    private $cachedTable = '#__bbl_vardia_customer';
+
+    private $cachedTableColumns  = array('bbl_customer_id', 'bbl_customer_email', 'vardia_customer_id', 'vardia_customer_info_cache');
+
+    /**
+     * @var RDatabaseDriverMysqli
+     */
+    private $db;
 
 
     /**
@@ -60,8 +73,21 @@ class DummyHelperBblvardia
         $vardiaGetQuoteApi = $params->get('get_quotes_api');
         $match->setVardiaGetQuoteAPI($vardiaGetQuoteApi);
 
+
+        $db = JFactory::getDbo();
+        $match->setDb($db);
+
         return $match;
     }
+
+    /**
+     * @param mixed $db
+     */
+    public function setDb($db)
+    {
+        $this->db = $db;
+    }
+
 
     /**
      * @param mixed $bblLoginAPI
@@ -150,6 +176,9 @@ class DummyHelperBblvardia
                 if (is_array($response) && isset($response['success']) && $response['success'] == true && isset($response['data'])) {
                     //Login success
                     $this->bblUser = $response['data'];
+                    $this->bblUserId = isset($this->bblUser['id']) ? $this->bblUser['id']: null;
+                    $this->bblUserEmail = isset( $this->bblUser['email']) ? $this->bblUser['email'] : null;
+
                     return true;
                 }
                 return false;
@@ -221,8 +250,21 @@ class DummyHelperBblvardia
     public function cacheVardiaCustomer()
     {
 
-        //print_r( $this->vardiaCustomer); exit;
-        return null;
+        if( $this->parseCustomerIdAndPartnerIds()) {
+            $query = $this->db->getQuery(true);
+
+            $values = array($this->bblUserId, $this->db->quote($this->bblUserEmail), $this->vardiaCustomerId, $this->db->quote(json_encode($this->vardiaCustomer)));
+
+            $query = $this->db->getQuery(true);
+            $query->insert($this->db->quoteName($this->cachedTable))
+                ->columns($this->db->quoteName($this->cachedTableColumns))
+                ->values(implode(',', $values));
+
+            $this->db->setQuery($query);
+            $this->db->execute();
+            return true;
+        }
+        return false;
     }
 
 
@@ -231,7 +273,33 @@ class DummyHelperBblvardia
      */
     public function getCachedVardiaCustomer()
     {
-        return null;
+        $query = $this->db->getQuery(true);
+
+        $query->select($this->db->quoteName($this->cachedTableColumns))
+            ->from($this->db->quoteName($this->cachedTable));
+
+
+        $this->db->setQuery($query);
+        $result = $this->db->loadObjectList();
+
+        if( is_array( $result) && count($result) > 0 ){
+            $result = $result[0];
+            if( $result instanceof \stdClass){
+                $result = json_decode(json_encode($result), true);
+
+                $vardiaCustomer = isset( $result['vardia_customer_info_cache'] )
+                    ? $result['vardia_customer_info_cache']
+                    : null ;
+
+                if( $vardiaCustomer) {
+                    $vardiaCustomer = json_decode($vardiaCustomer, true);
+
+                    return $vardiaCustomer;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -287,7 +355,7 @@ class DummyHelperBblvardia
 
     private function getVardiaPoliciesByCustomerIdAndPartnerId($apiUrl)
     {
-        $result = file_get_contents($apiUrl);
+        $result = @file_get_contents($apiUrl);
         $result = json_decode($result, true);
 
         return is_array($result) ? $result : array();
@@ -305,7 +373,7 @@ class DummyHelperBblvardia
             foreach( $this->vardiaPartnerIds as $partnerId) {
                 $apiUrl = $this->vardiaGetQuoteAPI . "?request[0][customerId]={$this->vardiaCustomerId}&request[0][partnerId]=$partnerId";
 
-                $result = file_get_contents($apiUrl);
+                @$result = file_get_contents($apiUrl);
                 $result = json_decode($result, true);
 
                 if(is_array($result)){
